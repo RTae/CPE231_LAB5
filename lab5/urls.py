@@ -28,6 +28,7 @@ urlpatterns = [
     path('report/ReportListAllInvoices', report_views.ReportListAllInvoices),
     path('report/ReportProductsSold', report_views.ReportProductsSold),
     path('report/ReportListAllProducts', report_views.ReportListAllProducts),
+    path('report/ReportListReceipt', report_views.ReportListAllReceipt),
     path('report/ReportUnpaidInvoice', report_views.ReportUnpaindInvoice),
 
     path('invoice', invoice_views.index, name='index'),

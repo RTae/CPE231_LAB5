@@ -72,6 +72,31 @@ def ReportListAllProducts(request):
 
     return render(request, 'report/report_list_all_products.html', data_report)
 
+def ReportListAllReceipt(request):
+    with connection.cursor() as cursor:
+        cursor.execute( ' SELECT r.receipt_no as "Receipt No", r.date as "Receipt Date" '
+                        ' , r.customer_code as "Customer Code", c.name as "Customer Name" '
+                        ' , pm.name as "Payment Medthod", r.payment_ref as "Paymet Refercence" '
+                        ' , r.remark as "Remarks", r.total_received as "Total received" '
+                        ' , rli.invoice_no as "Invoice No", i.date as "Invoice Date",rli.aph as "Amount Paid Here" '
+                        ' FROM receipt as r'
+                        ' INNER JOIN customer as c '
+                        '     ON r.customer_code = c.customer_code '
+                        ' INNER JOIN paymentmethod as pm'
+                        '     ON r.payment_code = pm.code '
+                        ' INNER JOIN receipt_line_item as rli'
+                        '     ON r.receipt_no = rli.receipt_no'
+                        ' INNER JOIN invoice as i'
+                        '     ON rli.invoice_no = i.invoice_no'
+                        )
+        row = dictfetchall(cursor)
+        column_name = [col[0] for col in cursor.description]
+    data_report = dict()
+    data_report['data'] = row
+    data_report['column_name'] = column_name
+
+    return render(request, 'report/report_list_all_receipt.html', data_report)
+
 def ReportUnpaindInvoice(request):
     with connection.cursor() as cursor:
         cursor.execute (

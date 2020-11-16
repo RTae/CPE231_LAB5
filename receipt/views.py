@@ -92,11 +92,11 @@ class ReceiptCreate(View):
         request.POST['receipt_no'] = next_receipt_no
         request.POST['date'] = reFormatDateMMDDYYYY(request.POST['date'])
         request.POST['total_received'] = reFormatNumber(request.POST['total_received'])
-
+        print(request.POST)
         form = ReceiptForm(request.POST)
+        print(form)
         if form.is_valid():
             receipt = form.save()
-
             dict_lineitem = json.loads(request.POST['lineitem'])
             for lineitem in dict_lineitem['lineitem']:
                 lineitem['receipt_no'] = next_receipt_no
