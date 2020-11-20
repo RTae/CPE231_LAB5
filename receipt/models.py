@@ -64,8 +64,8 @@ class InvoiceLineItem(models.Model):
 
 class Receipt(models.Model):
     receipt_no = models.CharField(max_length=10, primary_key=True)
-    customer_code = models.ForeignKey(Customer, on_delete=models.CASCADE, db_column='customer_code')
     date = models.DateField(null=True)
+    customer_code = models.ForeignKey(Customer, on_delete=models.CASCADE, db_column='customer_code')
     payment_code = models.ForeignKey(PaymentMedthod, on_delete=models.CASCADE, db_column='payment_code')
     payment_ref = models.CharField(max_length=50, null=True, blank=True)
     total_received = models.FloatField(null=True, blank=True)
