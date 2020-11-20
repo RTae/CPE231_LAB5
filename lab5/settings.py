@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'lab5.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'LAB3',
+        'NAME': 'Database_Name',
         'USER': 'postgres',
-        'PASSWORD': '123qweasd',
+        'PASSWORD': 'PASSWORD',
         'HOST': 'localhost',
         'PORT': '',
     }
